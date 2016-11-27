@@ -17,43 +17,11 @@ data App = App {getStatic :: Static, connPool :: ConnectionPool }
 
 -- Paciente tem responsavel? Tem tabela responsavel?
 share [mkPersist sqlSettings, mkMigrate "migrateAll"] [persistLowerCase|
-Paciente
+
+Usuario
     nome            Text
-    dtNasc          Day sqltype=date
-    rg              Text
-    endereco        Text
-    numero          Int
-    bairro          Text
-    cidade          Text
-    sgUF            Text sqltype=char(2)
-    telefone        Int
-    celular         Int
     email           Text
-    deriving Show
-    
-Especialidade
-    nome    Text
-    deriving Show
-    
-Medico
-    nome            Text
-    crm             Int
-    idEsp           EspecialidadeId
-    deriving Show
-    
-Consulta
-    idPac           PacienteId
-    idMed           MedicoId
-    dtConsulta      Day sqltype=date
-    obsConsulta     Text
-    deriving Show
-    
-Retorno
-    idCon           ConsultaId
-    idMed           MedicoId
-    dtRetorno       Day sqltype=date
-    obsRetorno      Text
-    deriving Show
+    senha           Text
 |]
 
 mkYesodData "App" $(parseRoutesFile "routes")

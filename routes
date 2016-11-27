@@ -1,2 +1,4 @@
-/              HomeR GET
-/add/#Int/#Int AddR  GET
+/                    HomeR       GET
+/usuario/cadastro UsuarioR GET POST
+/usuario/listar   ListUsuarioR   GET     
+
