@@ -1,0 +1,14 @@
+<table>
+    <tr> 
+        <td> id  
+        <td> nome 
+        <td> email 
+        <td>
+    $forall Entity uid usuario <- usuarios
+        <tr>
+            <form action=@{DelUsuarioR uid} method=post> 
+                <td> #{fromSqlKey  uid}  
+                <td> #{usuarioNome  usuario} 
+                <td> #{usuarioEmail  usuario} 
+                <td> <input type="submit" value="Apagar">
+
