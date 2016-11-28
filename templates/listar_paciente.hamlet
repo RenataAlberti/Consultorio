@@ -1,0 +1,31 @@
+<table>
+    <tr> 
+        <td> id  
+        <td> nome 
+        <td> nascimento
+        <td> cpf
+        <td> endereco
+        <td> numero
+        <td> bairro
+        <td> cidade
+        <td> uf
+        <td> telefone
+        <td> celular
+        <td> email 
+        <td>
+    $forall Entity uid paciente <- pacientes
+        <tr>
+            <form action=@{DelPacienteR uid} method=post> 
+                <td> #{fromSqlKey  uid}  
+                <td> #{pacienteNome  paciente} 
+                <td> #{show $ pacienteNascimento  paciente}
+                <td> #{pacienteCpf  paciente}
+                <td> #{pacienteEndereco  paciente}
+                <td> #{pacienteNumero  paciente}
+                <td> #{pacienteBairro  paciente}
+                <td> #{pacienteCidade  paciente}
+                <td> #{pacienteUf  paciente}
+                <td> #{pacienteTelefone  paciente}
+                <td> #{pacienteCelular  paciente}
+                <td> #{pacienteEmail  paciente} 
+                <td> <input type="submit" value="Apagar">

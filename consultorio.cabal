@@ -10,11 +10,9 @@ executable          consultorio
                     Foundation
                     Add
                     Home
-                    Handlers.Consulta
-                    Handlers.Especialidade
+                    Handlers.Usuario
                     Handlers.Medico
                     Handlers.Paciente
-                    Handlers.Padrao
 
   ghc-options:      -Wall -fwarn-tabs -O2
 
@@ -22,11 +20,13 @@ executable          consultorio
                 , yesod
                 , yesod-core
                 , yesod-static
+                , yesod-form
                 , text
                 , time
                 , persistent                    
                 , persistent-postgresql
                 , monad-logger
+                , shakespeare
 
 
   ghc-options:    -threaded -O2 -rtsopts -with-rtsopts=-N
