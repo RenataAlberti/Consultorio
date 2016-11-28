@@ -1,0 +1,15 @@
+<table>
+    <tr> 
+        <td> id  
+        <td> nome 
+        <td> crm 
+        <td> especialidade
+    $forall Entity uid medico <- medicos
+        <tr>
+            <form action=@{DelMedicoR uid} method=post> 
+                <td> #{fromSqlKey  uid}  
+                <td> #{medicoNome  medico} 
+                <td> #{medicoCrm  medico} 
+                <td> #{medicoEspecialidade  medico} 
+                <td> <input type="submit" value="Apagar">
+
