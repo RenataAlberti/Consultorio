@@ -1,0 +1,18 @@
+<table>
+    <tr> 
+        <td> id
+        <td> pacid
+        <td> medid
+        <td> dtconsulta
+        <td> obsconsulta
+        <td>
+    $forall Entity uid consulta <- consultas
+        <tr>
+            <form action=@{DelConsultaR uid} method=post> 
+                <td> #{fromSqlKey  uid}  
+                <td> #{show $ consultaPacid consulta}
+                <td> #{show $ consultaMedid consulta}
+                <td> #{show $ consultaDtconsulta  consulta} 
+                <td> #{consultaObsconsulta  consulta} 
+                <td> <input type="submit" value="Apagar">
+

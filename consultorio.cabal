@@ -13,6 +13,7 @@ executable          consultorio
                     Handlers.Usuario
                     Handlers.Medico
                     Handlers.Paciente
+                    Handlers.Consulta
 
   ghc-options:      -Wall -fwarn-tabs -O2
 

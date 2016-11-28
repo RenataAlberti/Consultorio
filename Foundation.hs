@@ -7,7 +7,7 @@ module Foundation where
 import Yesod
 import Data.Text
 import Yesod.Static
-import Data.Time()
+import Data.Time.Calendar
 import Database.Persist.Postgresql
     ( ConnectionPool, SqlBackend, runSqlPool)
 
@@ -28,6 +28,28 @@ Medico
     crm             Text
     especialidade   Text
     UniqueCrm crm
+    deriving Show
+    
+Paciente
+    nome            Text
+    nascimento      Day
+    cpf             Text
+    endereco        Text
+    numero          Int
+    bairro          Text
+    cidade          Text
+    uf              Text sqltype=char(2)
+    telefone        Int
+    celular         Int
+    email           Text
+    UniqueCpf cpf
+    deriving Show
+
+Consulta
+    dtconsulta      Day
+    pacid           PacienteId
+    medid           MedicoId
+    obsconsulta     Text
     deriving Show
     
 |]
