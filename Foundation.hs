@@ -7,29 +7,26 @@ module Foundation where
 import Yesod
 import Data.Text
 import Yesod.Static
-import Data.Time(Day)
+import Data.Time()
 import Database.Persist.Postgresql
     ( ConnectionPool, SqlBackend, runSqlPool)
-
-staticFiles "static"
 
 data App = App {getStatic :: Static, connPool :: ConnectionPool }
 
 -- Paciente tem responsavel? Tem tabela responsavel?
 share [mkPersist sqlSettings, mkMigrate "migrateAll"] [persistLowerCase|
-
 Usuario
-    nome            Text
-    email           Text
-    senha           Text
+    nome     Text
+    email    Text
+    senha    Text
+    UniqueEmail email
+    deriving Show
+
 |]
 
+staticFiles "static"
+
 mkYesodData "App" $(parseRoutesFile "routes")
-
-type Form a = Html -> MForm Handler (FormResult a, Widget)
-
-instance Yesod App where
-
 
 instance YesodPersist App where
    type YesodPersistBackend App = SqlBackend
@@ -37,6 +34,10 @@ instance YesodPersist App where
        master <- getYesod
        let pool = connPool master
        runSqlPool f pool
+
+instance Yesod App where
+
+type Form a = Html -> MForm Handler (FormResult a, Widget)
 
 instance RenderMessage App FormMessage where
     renderMessage _ _ = defaultFormMessage

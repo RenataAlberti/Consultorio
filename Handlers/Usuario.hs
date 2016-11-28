@@ -15,6 +15,7 @@ formUsuario = renderDivs $ Usuario
         <*> areq emailField  "email"      Nothing
         <*> areq passwordField "password" Nothing
 
+
 getUsuarioR :: Handler Html
 getUsuarioR = do
     (widget,enctype) <- generateFormPost formUsuario
@@ -24,17 +25,30 @@ getUsuarioR = do
                 ^{widget}
                 <input type="submit" value="Cadastrar">
         |]
+        
+        
+getListUsuarioR :: Handler Html
+getListUsuarioR = do
+            usuarios <- runDB $ selectList [] [Asc UsuarioNome]
+            defaultLayout $(whamletFile "templates/listar_usuario.hamlet")
+            
+        
+postDelUsuarioR :: UsuarioId -> Handler Html
+postDelUsuarioR userid = do 
+                runDB $ delete userid
+                redirect ListUsuarioR
+         
+
 
 postUsuarioR :: Handler Html
 postUsuarioR = do
-        ((result,_),_)<- runFormPost formUsuario
-        case result of
-            FormSuccess usuario -> do
-                vid <- runDB $ insert usuario
-                defaultLayout [whamlet|
-                    <h1> Usuario #{fromSqlKey vid} cadastro!
-                |]
-            _ -> redirect HomeR
-
-getListUsuarioR :: Handler Html
-getListUsuarioR = undefined
+                ((result, _), _) <- runFormPost formUsuario
+                case result of
+                    FormSuccess usuario -> do
+                       unicoEmail <- runDB $ getBy $ UniqueEmail (usuarioEmail usuario)
+                       case unicoEmail of
+                           Just _ -> redirect UsuarioR
+                           Nothing -> do 
+                              uid <- runDB $ insert usuario 
+                              redirect (ListUsuarioR)
+                    _ -> redirect HomeR

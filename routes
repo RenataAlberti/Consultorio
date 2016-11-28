@@ -1,4 +1,5 @@
-/                    HomeR       GET
-/usuario/cadastro UsuarioR GET POST
-/usuario/listar   ListUsuarioR   GET     
+/                               HomeR           GET
 
+/usuario/cadastro               UsuarioR        GET POST
+/usuario/listar                 ListUsuarioR    GET     
+/usuario/apagar/#UsuarioId      DelUsuarioR         POST
