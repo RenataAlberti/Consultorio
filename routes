@@ -3,3 +3,7 @@
 /usuario/cadastro               UsuarioR        GET POST
 /usuario/listar                 ListUsuarioR    GET     
 /usuario/apagar/#UsuarioId      DelUsuarioR         POST
+
+/medico/cadastro                MedicoR         GET POST
+/medico/listar                  ListMedicoR     GET
+/medico/apagar/#MedicoId        DelMedicoR          POST
